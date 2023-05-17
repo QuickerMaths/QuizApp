@@ -2,7 +2,7 @@
   "name": "quizapp",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://<username>.github.io/<repo>/",
+  "homepage": "https://quickermaths.github.io/QuizApp/",
   "type": "module",
   "scripts": {
     "dev": "vite",
