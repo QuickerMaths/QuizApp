@@ -28,6 +28,7 @@ type initialStateType = {
     difficultyLabel: string[];
   };
   usersAnswers: string[];
+  disableButtons: boolean;
 };
 
 const initialState: initialStateType = {
@@ -41,6 +42,7 @@ const initialState: initialStateType = {
     difficultyLabel: [],
   },
   usersAnswers: [],
+  disableButtons: false,
 };
 
 export const quizSlice = createSlice({

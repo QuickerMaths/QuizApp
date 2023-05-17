@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Answer from "../components/Answer";
 import { QuestionType } from "../features/slice/quizSlice";
 import { useAppSelector } from "../hooks/reduxHooks";
@@ -12,7 +12,7 @@ const Quiz = () => {
   );
   const navigate = useNavigate();
 
-  const [disableButtons, setDisableButtons] = useState<boolean>(false);
+  const disableButton = useRef<boolean>(false);
 
   useEffect(() => {
     quizEnd && navigate("/result", { replace: true });
@@ -46,8 +46,7 @@ const Quiz = () => {
               answer={answer}
               quizIndex={quizIndex}
               correctAnswer={correctAnswer}
-              disableButtons={disableButtons}
-              setDisableButtons={setDisableButtons}
+              disableButton={disableButton}
               key={i}
             />
           ))}
