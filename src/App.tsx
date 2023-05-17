@@ -9,16 +9,14 @@ import UsersAnswers from "./pages/UsersAnswers";
 function App() {
   return (
     <div className="h-screen">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home />} />
-            <Route path="quiz" element={<Quiz />} />
-            <Route path="result" element={<Result />} />
-            <Route path="user-answers" element={<UsersAnswers />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="quiz" element={<Quiz />} />
+          <Route path="result" element={<Result />} />
+          <Route path="user-answers" element={<UsersAnswers />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
