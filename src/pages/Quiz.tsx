@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Answer from "../components/Answer";
 import { QuestionType } from "../features/slice/quizSlice";
 import { useAppSelector } from "../hooks/reduxHooks";
@@ -12,7 +12,7 @@ const Quiz = () => {
   );
   const navigate = useNavigate();
 
-  const disableButton = useRef<boolean>(false);
+  const [disableButtons, setDisableButtons] = useState<boolean>(false);
 
   useEffect(() => {
     quizEnd && navigate("/result", { replace: true });
@@ -26,11 +26,16 @@ const Quiz = () => {
     incorrectAnswers,
   } = question as QuestionType;
 
-  const answers = [...incorrectAnswers, correctAnswer];
+  const [shuffleAnswers, setShuffleAnswers] = useState<string[]>([]);
 
   function shuffleArray(array: string[]) {
     return array.sort(() => Math.random() - 0.5);
   }
+
+  useEffect(() => {
+    const answers = [...incorrectAnswers, correctAnswer];
+    setShuffleAnswers(shuffleArray(answers));
+  }, [question]);
 
   return (
     <div className="flex flex-col justify-center items-center h-[92%]">
@@ -41,12 +46,13 @@ const Quiz = () => {
       <div className="flex flex-col justify-center items-center w-[90%] md:w-[70%] h-[60%] rounded-md bg-slate-300 mt-10">
         <h2 className="text-xl font-bold text-center px-2">{text}</h2>
         <ul className="flex flex-wrap gap-2 w-[90%] h-[60%] justify-center items-center mt-10">
-          {shuffleArray(answers).map((answer, i) => (
+          {shuffleAnswers.map((answer, i) => (
             <Answer
               answer={answer}
               quizIndex={quizIndex}
               correctAnswer={correctAnswer}
-              disableButton={disableButton}
+              disableButtons={disableButtons}
+              setDisableButtons={setDisableButtons}
               key={i}
             />
           ))}

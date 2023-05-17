@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { submitAnswer } from "../features/slice/quizSlice";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { useAppDispatch } from "../hooks/reduxHooks";
 
 interface Props {
   answer: string;
   quizIndex: number;
   correctAnswer: string;
-  disableButton: React.MutableRefObject<boolean>;
+  setDisableButtons: React.Dispatch<React.SetStateAction<boolean>>;
+  disableButtons: boolean;
 }
 
 const Answer: React.FC<Props> = ({
   answer,
   quizIndex,
   correctAnswer,
-  disableButton,
+  disableButtons,
+  setDisableButtons,
 }) => {
   const dispatch = useAppDispatch();
 
@@ -31,15 +33,16 @@ const Answer: React.FC<Props> = ({
     >
       <button
         onClick={() => {
-          disableButton.current = true;
           setAnswerClicked(true);
+          setDisableButtons(true);
           setTimeout(() => {
-            disableButton.current = false;
             setAnswerClicked(false);
+            setDisableButtons(false);
             dispatch(submitAnswer({ answer, quizIndex }));
           }, 1500);
         }}
         className="w-full h-full"
+        disabled={disableButtons}
       >
         {answer}
       </button>

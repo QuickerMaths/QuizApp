@@ -11,8 +11,6 @@ const Result = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  console.log(quizLabelParams);
-
   return (
     <section className="h-[92%] bg-gray-300 flex flex-col justify-center items-center gap-5">
       <div className="flex flex-col items-center justify-center gap-10 px-5 py-10 md:p-20 bg-blue-400 rounded-lg w-[90%] md:w-[40%]">
