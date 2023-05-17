@@ -1,4 +1,4 @@
-# [QuizApp](quickermaths.github.io/QuizApp/)
+# [QuizApp](https://quickermaths.github.io/QuizApp/)
 
 This repo contains quiz app written using React and TypeSctipt
 
