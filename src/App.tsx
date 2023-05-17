@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import SharedLayout from "./components/SharedLayout";
 import Home from "./pages/Home";
 import Quiz from "./pages/Quiz";
@@ -20,18 +19,6 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </div>
   );
 }
