@@ -10,6 +10,7 @@ const Quiz = () => {
   const { quiz, quizIndex, quizEnd, userPoints } = useAppSelector(
     (state: RootState) => state.quizSlice
   );
+  console.log(quiz);
   const navigate = useNavigate();
 
   const [disableButtons, setDisableButtons] = useState<boolean>(false);
@@ -41,7 +42,9 @@ const Quiz = () => {
     <div className="flex flex-col justify-center items-center h-[92%]">
       <div className="flex justify-around items-center w-[70%]">
         <h2 className=" font-bold md:text-3xl ml-4">Points {userPoints}</h2>
-        <h2 className=" font-bold md:text-3xl ml-4">Question {quizIndex}/10</h2>
+        <h2 className=" font-bold md:text-3xl ml-4">
+          Question {quizIndex}/{quiz.length}
+        </h2>
       </div>
       <div className="flex flex-col justify-center items-center w-[90%] md:w-[70%] h-[60%] rounded-md bg-slate-300 mt-10">
         <h2 className="text-xl font-bold text-center px-2">{text}</h2>

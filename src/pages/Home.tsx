@@ -15,6 +15,19 @@ const optionsDifficulty = [
   { value: "hard", label: "Hard" },
 ];
 
+const optionsLimit = [
+  { value: 5, label: "5" },
+  { value: 10, label: "10" },
+  { value: 15, label: "15" },
+  { value: 20, label: "20" },
+  { value: 25, label: "25" },
+  { value: 30, label: "30" },
+  { value: 35, label: "35" },
+  { value: 40, label: "40" },
+  { value: 45, label: "45" },
+  { value: 50, label: "50" },
+];
+
 const Home = () => {
   const animatedComponents = makeAnimated();
   const dispatch = useAppDispatch();
@@ -24,6 +37,7 @@ const Home = () => {
 
   const [categories, setCategories] = useState<(typeof OptionType)[]>([]);
   const [difficulty, setDifficulty] = useState<(typeof OptionType)[]>([]);
+  const [questionLimit, setQuestionLimit] = useState({ value: 5, label: "5" });
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,6 +50,7 @@ const Home = () => {
         fetchQuiz({
           category: categoryParams,
           difficulty: difficultyParams,
+          limit: questionLimit.value,
         })
       ).unwrap();
 
@@ -83,6 +98,16 @@ const Home = () => {
           isMulti
           options={optionsDifficulty}
           onChange={(selectedOption: any) => setDifficulty(selectedOption)}
+        />
+        <label htmlFor="question-limit">Number of questions</label>
+        <Select
+          name="question-limit"
+          id="question-limit"
+          required
+          className={"w-3/4"}
+          components={animatedComponents}
+          options={optionsLimit}
+          onChange={(selectedOption: any) => setQuestionLimit(selectedOption)}
         />
         <button
           type="submit"
