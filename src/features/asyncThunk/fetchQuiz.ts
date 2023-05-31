@@ -6,13 +6,13 @@ axios.defaults.baseURL = "https://the-trivia-api.com/v2";
 export const fetchQuiz = createAsyncThunk(
   "quiz/fetchQuiz",
   async (
-    quizData: { category: string; difficulty: string },
+    quizData: { category: string; difficulty: string; limit: number },
     { rejectWithValue }
   ) => {
-    const { category, difficulty } = quizData;
+    const { category, difficulty, limit } = quizData;
     try {
       const response = await axios.get(
-        `/questions/?categories=${category}&difficulties=${difficulty}`,
+        `/questions/?categories=${category}&difficulties=${difficulty}&limit=${limit}`,
         {
           transformResponse: [
             (response) => {
