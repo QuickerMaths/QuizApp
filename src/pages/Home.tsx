@@ -7,7 +7,10 @@ import { useAppDispatch } from "../hooks/reduxHooks";
 import { useMapEndpointParams } from "../hooks/useMapEndpointParams";
 import { fetchQuiz } from "../features/asyncThunk/fetchQuiz";
 import { useNavigate } from "react-router-dom";
-import { setQuizLabelParams } from "../features/slice/quizSlice";
+import {
+  setQuizLabelParams,
+  setTimeForQuestion,
+} from "../features/slice/quizSlice";
 
 const optionsDifficulty = [
   { value: "easy", label: "Easy" },
@@ -28,6 +31,13 @@ const optionsLimit = [
   { value: 50, label: "50" },
 ];
 
+const optionsTime = [
+  { value: 25, label: "25" },
+  { value: 50, label: "50" },
+  { value: 75, label: "75" },
+  { value: 100, label: "100" },
+];
+
 const Home = () => {
   const animatedComponents = makeAnimated();
   const dispatch = useAppDispatch();
@@ -38,6 +48,10 @@ const Home = () => {
   const [categories, setCategories] = useState<(typeof OptionType)[]>([]);
   const [difficulty, setDifficulty] = useState<(typeof OptionType)[]>([]);
   const [questionLimit, setQuestionLimit] = useState({ value: 5, label: "5" });
+  const [questionTime, setQuestionTime] = useState({
+    value: 100,
+    label: "100",
+  });
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,6 +68,8 @@ const Home = () => {
         })
       ).unwrap();
 
+      dispatch(setTimeForQuestion(questionTime.value));
+
       dispatch(
         setQuizLabelParams({
           categoryLabel: categories.map((category: any) => {
@@ -64,6 +80,7 @@ const Home = () => {
           }),
         })
       );
+
       navigate("/quiz");
     } catch (err) {
       console.log(err);
@@ -108,6 +125,16 @@ const Home = () => {
           components={animatedComponents}
           options={optionsLimit}
           onChange={(selectedOption: any) => setQuestionLimit(selectedOption)}
+        />
+        <label htmlFor="question-time">Seconds for each question</label>
+        <Select
+          name="question-time"
+          id="question-time"
+          required
+          className={"w-3/4"}
+          components={animatedComponents}
+          options={optionsTime}
+          onChange={(selectedOption: any) => setQuestionTime(selectedOption)}
         />
         <button
           type="submit"

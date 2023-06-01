@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { submitAnswer } from "../features/slice/quizSlice";
-import { useAppDispatch } from "../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { RootState } from "../redux/store";
 
 interface Props {
   answer: string;
@@ -8,6 +9,8 @@ interface Props {
   correctAnswer: string;
   setDisableButtons: React.Dispatch<React.SetStateAction<boolean>>;
   disableButtons: boolean;
+  setStartTimer: React.Dispatch<React.SetStateAction<boolean>>;
+  setTimeLeft: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Answer: React.FC<Props> = ({
@@ -16,8 +19,13 @@ const Answer: React.FC<Props> = ({
   correctAnswer,
   disableButtons,
   setDisableButtons,
+  setStartTimer,
+  setTimeLeft,
 }) => {
   const dispatch = useAppDispatch();
+  const timeForQuestion = useAppSelector(
+    (state: RootState) => state.quizSlice.timeForQuestion
+  );
 
   const [answerClicked, setAnswerClicked] = useState<boolean>(false);
 
@@ -35,11 +43,14 @@ const Answer: React.FC<Props> = ({
         onClick={() => {
           setAnswerClicked(true);
           setDisableButtons(true);
+          setStartTimer(false);
           setTimeout(() => {
             setAnswerClicked(false);
             setDisableButtons(false);
             dispatch(submitAnswer({ answer, quizIndex }));
-          }, 1500);
+            setTimeLeft(timeForQuestion);
+            setStartTimer(true);
+          }, 2000);
         }}
         className="w-full h-full"
         disabled={disableButtons}

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { resetQuiz } from "../features/slice/quizSlice";
 
 const Result = () => {
-  const { userPoints, quizLabelParams } = useAppSelector(
+  const { userPoints, quizLabelParams, quiz } = useAppSelector(
     (state: RootState) => state.quizSlice
   );
   const dispatch = useAppDispatch();
@@ -19,23 +19,23 @@ const Result = () => {
         </h2>
         <p className="text-3xl font-bold text-white text-center">
           You scored <span className="text-5xl text-black">{userPoints}</span>{" "}
-          out of 10 points
+          out of {quiz.length} points
         </p>
         <div className="flex flex-col justify-center items-center gap-3">
           <h3 className="text-2xl font-bold text-white underline">
             Categories:
           </h3>
           <ul className="text-center">
-            {quizLabelParams.categoryLabel.map((label) => (
-              <li>{label}</li>
+            {quizLabelParams.categoryLabel.map((label, i) => (
+              <li key={i}>{label}</li>
             ))}
           </ul>
           <h3 className="text-2xl font-bold text-white underline">
             Difficulty:
           </h3>
           <ul>
-            {quizLabelParams.difficultyLabel.map((label) => (
-              <li>{label}</li>
+            {quizLabelParams.difficultyLabel.map((label, i) => (
+              <li key={i}>{label}</li>
             ))}
           </ul>
         </div>

@@ -21,6 +21,7 @@ type initialStateType = {
   quiz: QuestionType[];
   quizIndex: number;
   userPoints: number;
+  timeForQuestion: number;
   isLoading: boolean;
   quizEnd: boolean;
   quizLabelParams: {
@@ -35,6 +36,7 @@ const initialState: initialStateType = {
   quiz: [],
   quizIndex: 1,
   userPoints: 0,
+  timeForQuestion: 100,
   isLoading: false,
   quizEnd: false,
   quizLabelParams: {
@@ -60,6 +62,7 @@ export const quizSlice = createSlice({
       }
 
       if (state.quizIndex === state.quiz.length) {
+        state.usersAnswers.push(answer);
         state.quizEnd = true;
         return;
       }
@@ -75,6 +78,9 @@ export const quizSlice = createSlice({
       }>
     ) => {
       state.quizLabelParams = action.payload;
+    },
+    setTimeForQuestion: (state, action: PayloadAction<number>) => {
+      state.timeForQuestion = action.payload;
     },
     resetQuiz: (_) => initialState,
   },
@@ -93,7 +99,11 @@ export const quizSlice = createSlice({
   },
 });
 
-export const { submitAnswer, setQuizLabelParams, resetQuiz } =
-  quizSlice.actions;
+export const {
+  submitAnswer,
+  setQuizLabelParams,
+  resetQuiz,
+  setTimeForQuestion,
+} = quizSlice.actions;
 
 export default quizSlice.reducer;

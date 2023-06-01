@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useEffect } from "react";
 
 export type OptionType = { value: string | number; label: string };
 type OptionsCategoriesType = OptionType[];
