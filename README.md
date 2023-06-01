@@ -34,5 +34,5 @@ npm run dev
 
 ## Todo
 
-- [ ] Add time limit for each question 
+- [x] Add time limit for each question 
 - [x] Allow user to choose number of questions
