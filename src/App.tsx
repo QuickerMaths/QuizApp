@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout";
 import Home from "./pages/Home";
 import Quiz from "./pages/Quiz";
