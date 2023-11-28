@@ -1,13 +1,13 @@
-# [QuizApp](https://quickermaths.github.io/QuizApp/)
+# QuizApp
 
-This repo contains quiz app written using React and TypeSctipt
+This repo contains a quiz app written using React and TypeSctipt
 
-## About this appliaction
+## About this application
 
-This simple quiz app allows user to create his own quiz by choosing multiple categories and difficulty levels, I've used [React Select](https://react-select.com/home) library to make this process
+This simple quiz app allows users to create their own quizzes by choosing multiple categories and difficulty levels, I've used [React Select](https://react-select.com/home) library to make this process
 as simple as possible. All the question data comes from [THE TRIVIA API](https://the-trivia-api.com/), to fetch this data I've used [axios](https://axios-http.com/docs/intro) and asynThunks 
-from [ReduxToolkit](https://redux-toolkit.js.org/). App counts all points that user gets and displays it on the Result page, as well as all the questions that were generated for the quzi with all the 
-correct answers as well as all answers that has choosed.
+from [ReduxToolkit](https://redux-toolkit.js.org/). The app counts all points that the user gets and displays them on the Result page, as well as all the questions that were generated for the quiz with all the 
+correct answers as well as all answers that have been chosen.
 
 # How to start this app on your device 
 
@@ -35,4 +35,4 @@ npm run dev
 ## Todo
 
 - [x] Add time limit for each question 
-- [x] Allow user to choose number of questions
+- [x] Allow the user to choose a number of questions
